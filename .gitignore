@@ -1,0 +1,11 @@
+/.idea/
+/.DS_Store/
+/.gradle/
+/*.iml/
+/build/
+/static/
+/logs/
+/target/
+/node_modules/
+/templates/
+npm-debug.log
