@@ -17,38 +17,38 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
-    /**
-     * 运行时异常
-     * @param exception
-     * @return
-     */
-    @ExceptionHandler({ RuntimeException.class })
-    @ResponseStatus(HttpStatus.OK)
-    public ModelAndView processException(RuntimeException exception) {
-        logger.info("自定义异常处理-RuntimeException");
-        ModelAndView m = new ModelAndView();
-        m.addObject("exception", exception.getMessage());
-        m.setViewName("error/500");
-        return m;
-
+//    @ExceptionHandler({ RuntimeException.class })
+//    @ResponseStatus(HttpStatus.OK)
+//    public ModelAndView processException(RuntimeException exception) {
+//        logger.info("自定义异常处理-RuntimeException");
+//        ModelAndView m = new ModelAndView();
+//        m.addObject("exception", exception.getMessage());
+//        m.setViewName("error/500");
+//        return m;
+//
+//    }
+//
+//    @ExceptionHandler({ Exception.class })
+//    @ResponseStatus(HttpStatus.OK)
+//    public ModelAndView processException(Exception exception) {
+//        logger.info("自定义异常处理-Exception");
+//        ModelAndView m = new ModelAndView();
+//        m.addObject("exception", exception.getMessage());
+//        m.setViewName("error/500");
+//        return m;
+//
+//    }
+    @ExceptionHandler({RuntimeException.class})
+    @ResponseBody
+    public AjaxResponse<String> processException(HttpServletRequest req, RuntimeException e) throws Exception {
+        AjaxResponse<String> ajaxResponse = new AjaxResponse<>();
+        ajaxResponse.setErrorCode("-1");
+        ajaxResponse.setMsg(e.getMessage());
+        ajaxResponse.setSuccess(false);
+        ajaxResponse.setResult(null);
+        return ajaxResponse;
     }
-
-    /**
-     * Excepiton异常
-     * @param exception
-     * @return
-     */
-    @ExceptionHandler({ Exception.class })
-    @ResponseStatus(HttpStatus.OK)
-    public ModelAndView processException(Exception exception) {
-        logger.info("自定义异常处理-Exception");
-        ModelAndView m = new ModelAndView();
-        m.addObject("exception", exception.getMessage());
-        m.setViewName("error/500");
-        return m;
-
-    }
-    @ExceptionHandler(value = ResponseException.class)
+    @ExceptionHandler({ResponseException.class})
     @ResponseBody
     public AjaxResponse<String> jsonErrorHandler(HttpServletRequest req, ResponseException e) throws Exception {
         AjaxResponse<String> ajaxResponse = new AjaxResponse<>();
