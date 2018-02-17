@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/admin/**").authenticated()
+                .antMatchers("/api/**").authenticated()
 //                .anyRequest().anonymous()
                 .and().formLogin().loginPage("/login").failureUrl("/login?error")
                 .and()
