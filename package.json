@@ -1,0 +1,49 @@
+{
+  "name": "kits-front-web",
+  "version": "1.0.0",
+  "description": "kits-front-web",
+  "main": "index.js",
+  "scripts": {
+    "dev": "export NODE_ENV=dev && webpack-dev-server --config ./src/main/resources/webpack.config.js --open",
+    "build": "export NODE_ENV=prod && webpack --config ./src/main/resources/webpack.config.js -p",
+    "lint": "export NODE_ENV=lint && webpack-dev-server --open",
+    "serve": "http-server ./dist -p 8888 -o"
+  },
+  "author": "zhou",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^7.2.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "css-loader": "^0.28.7",
+    "expose-loader": "^0.7.4",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.5",
+    "html-loader": "^0.5.1",
+    "html-webpack-plugin": "^2.30.1",
+    "json-loader": "^0.5.7",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "postcss-loader": "^2.0.9",
+    "postcss-pxtorem": "^4.0.1",
+    "responsive-loader": "^1.1.0",
+    "style-loader": "^0.19.0",
+    "svg-sprite-loader": "^3.4.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.9.1",
+    "webpack-dev-server": "^2.9.5",
+    "html-withimg-loader": "^0.1.16",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "cross-env": "^5.1.1",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "swiper": "^4.0.7"
+  }
+}
