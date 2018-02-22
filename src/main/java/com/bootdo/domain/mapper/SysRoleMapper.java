@@ -21,5 +21,5 @@ import java.util.List;
  */
 public interface SysRoleMapper extends CrudMapper<SysRoleExample,SysRole> {
     @Select("select * from sys_role where id in(select role_id from sys_user_role where user_id=#{userId})")
-    public List<SysRole> selectRolesByUserID(@Param("userId") String userId);
+    public List<SysRole> selectRolesByUserID(@Param("userId") Long userId);
 }

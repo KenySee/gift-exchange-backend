@@ -18,7 +18,7 @@ public abstract class BaseEntity implements Serializable {
 	/**
 	 * 实体编号（唯一标识）
 	 */
-	protected String id;
+	protected Long id;
 
 	protected Date createTm;
 
@@ -35,16 +35,16 @@ public abstract class BaseEntity implements Serializable {
 		
 	}
 	
-	public BaseEntity(String id) {
+	public BaseEntity(Long id) {
 		this();
 		this.id = id;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -54,7 +54,7 @@ public abstract class BaseEntity implements Serializable {
 	 */
 	public void preInsert(){
 		this.setCreateTm(new Date());
-		this.setId(IdGen.nextS());
+		this.setId(IdGen.next());
 	}
 	
 	/**
@@ -70,7 +70,7 @@ public abstract class BaseEntity implements Serializable {
      * @return
      */
 	public boolean getIsNewRecord() {
-        return isNewRecord || StringUtils.isBlank(getId());
+        return isNewRecord || this.id == null;
     }
 
 	/**

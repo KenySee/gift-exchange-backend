@@ -30,7 +30,7 @@ public abstract class CrudService<D extends CrudMapper<Example,Entity>, Entity e
 	 * @param id
 	 * @return
 	 */
-	public AjaxResponse<Entity> get(String id) {
+	public AjaxResponse<Entity> get(Long id) {
 		return getAjaxResponse(dao.selectByPrimaryKey(id));
 	}
 
@@ -76,7 +76,7 @@ public abstract class CrudService<D extends CrudMapper<Example,Entity>, Entity e
 	public void save(Entity entity) {
 		if (entity.getIsNewRecord()){
 			entity.preInsert();
-			dao.insertSelective(entity);
+			dao.insert(entity);
 		}else{
 			entity.preUpdate();
 			dao.updateByPrimaryKeySelective(entity);
@@ -115,7 +115,7 @@ public abstract class CrudService<D extends CrudMapper<Example,Entity>, Entity e
 	 * @param id
 	 */
 	@Transactional
-	public void delete(String id) {
+	public void delete(Long id) {
 		dao.deleteByPrimaryKey(id);
 	}
 
@@ -125,8 +125,8 @@ public abstract class CrudService<D extends CrudMapper<Example,Entity>, Entity e
 	 * @param ids
 	 */
 	@Transactional
-	public void deleteAll(Collection<String> ids) {
-		for (String id : ids) {
+	public void deleteAll(Collection<Long> ids) {
+		for (Long id : ids) {
 			dao.deleteByPrimaryKey(id);
 		}
 	}

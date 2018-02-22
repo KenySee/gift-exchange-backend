@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bootdo.domain.mapper.SysRoleMapper">
   <resultMap id="BaseResultMap" type="com.bootdo.domain.entity.SysRole">
-    <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="create_tm" jdbcType="TIMESTAMP" property="createTm" />
     <result column="update_tm" jdbcType="TIMESTAMP" property="updateTm" />
@@ -82,15 +82,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_role
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from sys_role
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.bootdo.domain.entity.example.SysRoleExample">
     delete from sys_role
@@ -101,7 +101,7 @@
   <insert id="insert" parameterType="com.bootdo.domain.entity.SysRole">
     insert into sys_role (id, name, create_tm, 
       update_tm)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{createTm,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{createTm,jdbcType=TIMESTAMP}, 
       #{updateTm,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.bootdo.domain.entity.SysRole">
@@ -122,7 +122,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -145,7 +145,7 @@
     update sys_role
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=VARCHAR},
+        id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -163,7 +163,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update sys_role
-    set id = #{record.id,jdbcType=VARCHAR},
+    set id = #{record.id,jdbcType=BIGINT},
       name = #{record.name,jdbcType=VARCHAR},
       create_tm = #{record.createTm,jdbcType=TIMESTAMP},
       update_tm = #{record.updateTm,jdbcType=TIMESTAMP}
@@ -184,13 +184,13 @@
         update_tm = #{updateTm,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bootdo.domain.entity.SysRole">
     update sys_role
     set name = #{name,jdbcType=VARCHAR},
       create_tm = #{createTm,jdbcType=TIMESTAMP},
       update_tm = #{updateTm,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

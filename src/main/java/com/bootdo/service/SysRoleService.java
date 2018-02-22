@@ -32,14 +32,14 @@ public class SysRoleService  extends CrudService<SysRoleMapper,SysRole,SysRoleEx
     SysUserRoleMapper sysuserRoleMapper;
 
     @Cacheable(key = "#p0")
-    public List<SysRole> getRole(String userId) {
+    public List<SysRole> getRole(Long userId) {
         return dao.selectRolesByUserID(userId);
     }
 
     @Cacheable(key = "#p0")
     @Transactional
-    public List<SysRole> insertUserRole(String userId, String... roleId) {
-        for (String id : roleId) {
+    public List<SysRole> insertUserRole(Long userId, Long... roleId) {
+        for (Long id : roleId) {
             SysUserRole userRole = new SysUserRole();
             userRole.setRoleId(id);
             userRole.setUserId(userId);

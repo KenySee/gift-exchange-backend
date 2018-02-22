@@ -5,7 +5,7 @@ package com.bootdo.common.page;
  */
 public class AjaxResponse<T> {
     private boolean success = true;// 是否成功
-    private String errorCode = "-1";//错误代码
+    private String errorCode = "0";//错误代码
     private String msg = "操作成功";// 提示信息
     private T result;//返回结果
 

@@ -12,7 +12,7 @@ public interface CrudMapper<Example,Entity>{
 
     int deleteByExample(Example example);
 
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Entity record);
 
@@ -20,7 +20,7 @@ public interface CrudMapper<Example,Entity>{
 
     List<Entity> selectByExample(Example example);
 
-    Entity selectByPrimaryKey(String id);
+    Entity selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") Entity record, @Param("example") Example example);
 

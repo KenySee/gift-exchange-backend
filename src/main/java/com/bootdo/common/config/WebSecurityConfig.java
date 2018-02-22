@@ -26,8 +26,11 @@ import java.util.List;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("#{'${security.matchers}'.split(',')}")
-    private List<String> matchers;
+    @Value("#{'${security.white.matchers}'.split(',')}")
+    private List<String> whiteMatchers;
+
+    @Value("#{'${security.black.matchers}'.split(',')}")
+    private List<String> blackMatchers;
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -60,10 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/**").authenticated()
-//                .anyRequest().anonymous()
-                .and().formLogin().loginPage("/login").failureUrl("/login?error")
-                .and()
+                .antMatchers((String[]) whiteMatchers.toArray(new String[whiteMatchers.size()])).permitAll()
+                .antMatchers((String[]) blackMatchers.toArray(new String[blackMatchers.size()])).authenticated().and()
                 .headers().frameOptions().disable();
         // Custom JWT based security filter
         httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);

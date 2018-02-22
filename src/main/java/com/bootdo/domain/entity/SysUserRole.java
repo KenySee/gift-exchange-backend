@@ -3,23 +3,23 @@ package com.bootdo.domain.entity;
 import com.bootdo.common.persistence.BaseEntity;
 
 public class SysUserRole extends BaseEntity {
-    private String userId;
+    private Long userId;
 
-    private String roleId;
+    private Long roleId;
 
-    public String getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId == null ? null : roleId.trim();
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 }

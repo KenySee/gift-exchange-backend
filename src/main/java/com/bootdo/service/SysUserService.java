@@ -43,7 +43,7 @@ public class SysUserService  extends CrudService<SysUserMapper,SysUser,SysUserEx
     }
 
     @Cacheable(key = "#p0")
-    public SysUser getUserByUserID(String id) {
+    public SysUser getUserByUserID(Long id) {
         SysUser hyUser = dao.selectByPrimaryKey(id);
         hyUser.setRoleList(sysRoleService.getRole(hyUser.getId()));
         return hyUser;
@@ -51,13 +51,7 @@ public class SysUserService  extends CrudService<SysUserMapper,SysUser,SysUserEx
 
     @CachePut(key="#p0.id")
     public SysUser saveHyUser(SysUser hyUser){
-        if(hyUser.getIsNewRecord()){
-            hyUser.preInsert();
-            dao.insert(hyUser);
-        }else{
-            hyUser.preUpdate();
-            dao.updateByPrimaryKeySelective(hyUser);
-        }
+        this.save(hyUser);
         return hyUser;
     }
 }

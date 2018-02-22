@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bootdo.domain.mapper.SysUserMapper">
   <resultMap id="BaseResultMap" type="com.bootdo.domain.entity.SysUser">
-    <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="userpassword" jdbcType="VARCHAR" property="userpassword" />
     <result column="realname" jdbcType="VARCHAR" property="realname" />
@@ -91,15 +91,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from sys_user
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from sys_user
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.bootdo.domain.entity.example.SysUserExample">
     delete from sys_user
@@ -113,7 +113,7 @@
       credentialssalt, email, create_tm, 
       update_tm, last_password_reset_date, headimage
       )
-    values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, 
       #{realname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{userstatus,jdbcType=VARCHAR}, 
       #{credentialssalt,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createTm,jdbcType=TIMESTAMP}, 
       #{updateTm,jdbcType=TIMESTAMP}, #{lastPasswordResetDate,jdbcType=TIMESTAMP}, #{headimage,jdbcType=VARCHAR}
@@ -161,7 +161,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=BIGINT},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -208,7 +208,7 @@
     update sys_user
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=VARCHAR},
+        id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.username != null">
         username = #{record.username,jdbcType=VARCHAR},
@@ -250,7 +250,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update sys_user
-    set id = #{record.id,jdbcType=VARCHAR},
+    set id = #{record.id,jdbcType=BIGINT},
       username = #{record.username,jdbcType=VARCHAR},
       userpassword = #{record.userpassword,jdbcType=VARCHAR},
       realname = #{record.realname,jdbcType=VARCHAR},
@@ -303,7 +303,7 @@
         headimage = #{headimage,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bootdo.domain.entity.SysUser">
     update sys_user
@@ -318,6 +318,6 @@
       update_tm = #{updateTm,jdbcType=TIMESTAMP},
       last_password_reset_date = #{lastPasswordResetDate,jdbcType=TIMESTAMP},
       headimage = #{headimage,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

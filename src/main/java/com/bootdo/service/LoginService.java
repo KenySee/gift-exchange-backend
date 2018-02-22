@@ -31,7 +31,7 @@ public class LoginService {
     @Autowired
     SysRoleService sysRoleService;
     @Value("${ROLE_CLIENT_USER}")
-    String ROLE_CLIENT_USER;
+    Long ROLE_CLIENT_USER;
     @Value("${DEFALUT_PASS}")
     String DEFALUT_PASS;
 

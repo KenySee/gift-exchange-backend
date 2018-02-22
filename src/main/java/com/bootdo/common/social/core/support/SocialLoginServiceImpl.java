@@ -36,7 +36,7 @@ public class SocialLoginServiceImpl implements SocialUserDetailsService {
 	private SocialUserDetails buildUser(String userId) {
 		// 根据用户名查找用户信息
 		// 根据查找到的用户信息判断用户是否被冻结
-        SysUser sysUser = sysUserService.getUserByUserID(userId);
+        SysUser sysUser = sysUserService.getUserByUserID(Long.parseLong(userId));
 		List<SimpleGrantedAuthority> auths = new ArrayList<SimpleGrantedAuthority>();
 		for (SysRole s : sysUser.getRoleList()) {
 			auths.add(new SimpleGrantedAuthority(s.getName()));
@@ -86,7 +86,7 @@ public class SocialLoginServiceImpl implements SocialUserDetailsService {
 
 			@Override
 			public String getUserId() {
-				return sysUser.getId();
+				return sysUser.getId().toString();
 			}
 		};
 	}

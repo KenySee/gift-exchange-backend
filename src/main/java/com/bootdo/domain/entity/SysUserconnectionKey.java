@@ -3,18 +3,18 @@ package com.bootdo.domain.entity;
 import com.bootdo.common.persistence.BaseEntity;
 
 public class SysUserconnectionKey extends BaseEntity {
-    private String userid;
+    private Long userid;
 
     private String providerid;
 
     private String provideruserid;
 
-    public String getUserid() {
+    public Long getUserid() {
         return userid;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid == null ? null : userid.trim();
+    public void setUserid(Long userid) {
+        this.userid = userid;
     }
 
     public String getProviderid() {
