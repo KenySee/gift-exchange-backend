@@ -1,6 +1,9 @@
 package com.bootdo.service;
 
 import java.util.List;
+
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import com.bootdo.domain.entity.SysMenu;
 import com.bootdo.domain.entity.example.SysMenuExample;
@@ -19,6 +22,11 @@ import com.bootdo.common.service.CrudService;
  * @mbg.generated do_not_delete_during_merge
  */
 @Service
+@CacheConfig(cacheNames = "menus")
 public class SysMenuService  extends CrudService<SysMenuMapper,SysMenu,SysMenuExample> {
 
+    @Cacheable(key = "#p0")
+    public List<SysMenu> getRoleMenus(Long userId) {
+        return dao.selectMenusByUserID(userId);
+    }
 }

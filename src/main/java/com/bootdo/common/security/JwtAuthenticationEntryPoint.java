@@ -28,9 +28,9 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
         response.setContentType("text/json");
         response.setCharacterEncoding("utf-8");
         AjaxResponse<String> ajaxResponse = new AjaxResponse<>();
-        ajaxResponse.setErrorCode("401");
+        ajaxResponse.setStatusCode(401);
         ajaxResponse.setSuccess(false);
-        ajaxResponse.setMsg("权限不足，无法访问！");
+        ajaxResponse.setMessage("权限不足，无法访问！");
         response.getWriter().println(provider.getObjectMapper().writeValueAsString(ajaxResponse));
         response.getWriter().flush();
     }

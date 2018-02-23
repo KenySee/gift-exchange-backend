@@ -38,24 +38,22 @@ public class GlobalExceptionHandler {
 //        return m;
 //
 //    }
-    @ExceptionHandler({RuntimeException.class})
-    @ResponseBody
-    public AjaxResponse<String> processException(HttpServletRequest req, RuntimeException e) throws Exception {
+    AjaxResponse<String> createAjaxResponse(RuntimeException e){
         AjaxResponse<String> ajaxResponse = new AjaxResponse<>();
-        ajaxResponse.setErrorCode("-1");
-        ajaxResponse.setMsg(e.getMessage());
+        ajaxResponse.setStatusCode(-1);
+        ajaxResponse.setMessage(e.getMessage());
         ajaxResponse.setSuccess(false);
         ajaxResponse.setResult(null);
         return ajaxResponse;
     }
+    @ExceptionHandler({RuntimeException.class})
+    @ResponseBody
+    public AjaxResponse<String> processException(HttpServletRequest req, RuntimeException e) throws Exception {
+        return createAjaxResponse(e);
+    }
     @ExceptionHandler({ResponseException.class})
     @ResponseBody
     public AjaxResponse<String> jsonErrorHandler(HttpServletRequest req, ResponseException e) throws Exception {
-        AjaxResponse<String> ajaxResponse = new AjaxResponse<>();
-        ajaxResponse.setErrorCode(String.valueOf(e.getStatus()));
-        ajaxResponse.setMsg(e.getMessage());
-        ajaxResponse.setSuccess(false);
-        ajaxResponse.setResult(null);
-        return ajaxResponse;
+        return createAjaxResponse(e);
     }
 }

@@ -19,7 +19,6 @@ public class SysMenu extends BaseEntity {
     public void preInsert() {
         SysMenuMapper mapper = SpringUtils.getBean(SysMenuMapper.class);
         Long id = mapper.IdGen(this.parentId);
-        this.setId(id);
         this.setCreateTm(new Date());
     }
 
@@ -52,6 +51,6 @@ public class SysMenu extends BaseEntity {
     }
 
     public void setParentId(Long parentId) {
-        this.parentId = parentId == null ? -1 : parentId;
+        this.parentId = parentId;
     }
 }

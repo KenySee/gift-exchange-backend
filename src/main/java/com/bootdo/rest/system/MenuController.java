@@ -20,23 +20,18 @@ public class MenuController {
     @Autowired
     private SysMenuService sysMenuService;
 
-    @Autowired
-    private SysMenuMapper sysMenuMapper;
-
-    @RequestMapping(value = "/childs",method = RequestMethod.GET)
-    public AjaxResponse<List<SysMenu>> childs(Long parentId){
+    @RequestMapping(method = RequestMethod.GET)
+    public AjaxResponse<List<SysMenu>> all(){
         SysMenuExample example = new SysMenuExample();
-        example.createCriteria().andParentIdEqualTo(parentId);
-        List<SysMenu> childs = sysMenuMapper.selectByExample(example);
-        return new AjaxResponse<>(childs);
+        return sysMenuService.findList(example);
     }
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
     public AjaxResponse<SysMenu> get(@PathVariable Long id){
-        SysMenu menu = sysMenuMapper.selectByPrimaryKey(id);
-        return new AjaxResponse<>(menu);
+        return sysMenuService.get(id);
     }
+
     @RequestMapping(method = RequestMethod.POST)
-    public AjaxResponse<SysMenu> save(String name,String icon,String path,Long parnetId){
+    public AjaxResponse<SysMenu> post(String name,String icon,String path,Long parnetId){
         SysMenu menu = new SysMenu();
         menu.setName(name);
         menu.setIcon(icon);
@@ -46,21 +41,22 @@ public class MenuController {
         return new AjaxResponse<>(menu);
     }
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public AjaxResponse<SysMenu> update(Long id,String name,String icon,String path,Long parnet){
-        SysMenu menu = sysMenuMapper.selectByPrimaryKey(id);
+    @RequestMapping(method = RequestMethod.PATCH)
+    public AjaxResponse<SysMenu> patch(Long id,String name,String icon,String path,Long parentId){
+        AjaxResponse<SysMenu> response = sysMenuService.get(id);
+        SysMenu menu = response.getResult();
         menu.setName(name);
         menu.setIcon(icon);
         menu.setPath(path);
-        menu.setParentId(parnet);
+        menu.setParentId(parentId);
         sysMenuService.updateByPrimaryKey(menu);
-        return new AjaxResponse<>(menu);
+        return response;
     }
 
     @RequestMapping(method = RequestMethod.DELETE)
     public AjaxResponse<SysMenu> delete(Long id){
-        SysMenu menu = sysMenuMapper.selectByPrimaryKey(id);
+        AjaxResponse<SysMenu> response = sysMenuService.get(id);
         sysMenuService.delete(id);
-        return new AjaxResponse<>(menu);
+        return response;
     }
 }

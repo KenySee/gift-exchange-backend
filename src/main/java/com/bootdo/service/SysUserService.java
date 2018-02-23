@@ -1,6 +1,8 @@
 package com.bootdo.service;
 
 import com.bootdo.common.service.CrudService;
+import com.bootdo.domain.entity.SysMenu;
+import com.bootdo.domain.entity.SysRole;
 import com.bootdo.domain.entity.SysUser;
 import com.bootdo.domain.entity.example.SysUserExample;
 import com.bootdo.domain.mapper.SysUserMapper;
@@ -27,7 +29,7 @@ import java.util.List;
 @CacheConfig(cacheNames = "users")
 public class SysUserService  extends CrudService<SysUserMapper,SysUser,SysUserExample> {
     @Autowired
-    SysRoleService sysRoleService;
+    private SysRoleService sysRoleService;
 
     @Cacheable(key = "#p0")
     public SysUser getUserByUserName(String username) {
@@ -35,13 +37,10 @@ public class SysUserService  extends CrudService<SysUserMapper,SysUser,SysUserEx
         sysUserExample.createCriteria().andUsernameEqualTo(username);
         List<SysUser> list = dao.selectByExample(sysUserExample);
         if (list.size() > 0) {
-            SysUser sysUser = list.get(0);
-            sysUser.setRoleList(sysRoleService.getRole(sysUser.getId()));
-            return sysUser;
+            return list.get(0);
         }
-        return null;
+        return  null;
     }
-
     @Cacheable(key = "#p0")
     public SysUser getUserByUserID(Long id) {
         SysUser hyUser = dao.selectByPrimaryKey(id);

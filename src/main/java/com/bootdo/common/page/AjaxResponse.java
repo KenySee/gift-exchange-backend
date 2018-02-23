@@ -5,8 +5,8 @@ package com.bootdo.common.page;
  */
 public class AjaxResponse<T> {
     private boolean success = true;// 是否成功
-    private String errorCode = "0";//错误代码
-    private String msg = "操作成功";// 提示信息
+    private Integer statusCode = 0;//错误代码
+    private String message = "操作成功";// 提示信息
     private T result;//返回结果
 
     public AjaxResponse() {
@@ -24,20 +24,20 @@ public class AjaxResponse<T> {
         this.success = success;
     }
 
-    public String getErrorCode() {
-        return errorCode;
+    public Integer getStatusCode() {
+        return statusCode;
     }
 
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public T getResult() {

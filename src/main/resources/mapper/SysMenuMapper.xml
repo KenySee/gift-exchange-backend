@@ -7,6 +7,8 @@
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="path" jdbcType="VARCHAR" property="path" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="create_tm" jdbcType="TIMESTAMP" property="createTm" />
+    <result column="update_tm" jdbcType="TIMESTAMP" property="updateTm" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, icon, path, parent_id
+    id, name, icon, path, parent_id, create_tm, update_tm
   </sql>
   <select id="selectByExample" parameterType="com.bootdo.domain.entity.example.SysMenuExample" resultMap="BaseResultMap">
     select
@@ -101,9 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.bootdo.domain.entity.SysMenu">
     insert into sys_menu (id, name, icon, 
-      path, parent_id)
+      path, parent_id, create_tm, 
+      update_tm)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
-      #{path,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT})
+      #{path,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{createTm,jdbcType=TIMESTAMP}, 
+      #{updateTm,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.bootdo.domain.entity.SysMenu">
     insert into sys_menu
@@ -123,6 +127,12 @@
       <if test="parentId != null">
         parent_id,
       </if>
+      <if test="createTm != null">
+        create_tm,
+      </if>
+      <if test="updateTm != null">
+        update_tm,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -139,6 +149,12 @@
       </if>
       <if test="parentId != null">
         #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="createTm != null">
+        #{createTm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTm != null">
+        #{updateTm,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -166,6 +182,12 @@
       <if test="record.parentId != null">
         parent_id = #{record.parentId,jdbcType=BIGINT},
       </if>
+      <if test="record.createTm != null">
+        create_tm = #{record.createTm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTm != null">
+        update_tm = #{record.updateTm,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +199,9 @@
       name = #{record.name,jdbcType=VARCHAR},
       icon = #{record.icon,jdbcType=VARCHAR},
       path = #{record.path,jdbcType=VARCHAR},
-      parent_id = #{record.parentId,jdbcType=BIGINT}
+      parent_id = #{record.parentId,jdbcType=BIGINT},
+      create_tm = #{record.createTm,jdbcType=TIMESTAMP},
+      update_tm = #{record.updateTm,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +221,12 @@
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=BIGINT},
       </if>
+      <if test="createTm != null">
+        create_tm = #{createTm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTm != null">
+        update_tm = #{updateTm,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -205,7 +235,9 @@
     set name = #{name,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
       path = #{path,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=BIGINT}
+      parent_id = #{parentId,jdbcType=BIGINT},
+      create_tm = #{createTm,jdbcType=TIMESTAMP},
+      update_tm = #{updateTm,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

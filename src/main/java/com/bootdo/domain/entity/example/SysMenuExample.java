@@ -1,6 +1,7 @@
 package com.bootdo.domain.entity.example;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SysMenuExample {
@@ -431,6 +432,126 @@ public class SysMenuExample {
 
         public Criteria andParentIdNotBetween(Long value1, Long value2) {
             addCriterion("parent_id not between", value1, value2, "parentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmIsNull() {
+            addCriterion("create_tm is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmIsNotNull() {
+            addCriterion("create_tm is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmEqualTo(Date value) {
+            addCriterion("create_tm =", value, "createTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmNotEqualTo(Date value) {
+            addCriterion("create_tm <>", value, "createTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmGreaterThan(Date value) {
+            addCriterion("create_tm >", value, "createTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_tm >=", value, "createTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmLessThan(Date value) {
+            addCriterion("create_tm <", value, "createTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmLessThanOrEqualTo(Date value) {
+            addCriterion("create_tm <=", value, "createTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmIn(List<Date> values) {
+            addCriterion("create_tm in", values, "createTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmNotIn(List<Date> values) {
+            addCriterion("create_tm not in", values, "createTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmBetween(Date value1, Date value2) {
+            addCriterion("create_tm between", value1, value2, "createTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTmNotBetween(Date value1, Date value2) {
+            addCriterion("create_tm not between", value1, value2, "createTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmIsNull() {
+            addCriterion("update_tm is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmIsNotNull() {
+            addCriterion("update_tm is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmEqualTo(Date value) {
+            addCriterion("update_tm =", value, "updateTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmNotEqualTo(Date value) {
+            addCriterion("update_tm <>", value, "updateTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmGreaterThan(Date value) {
+            addCriterion("update_tm >", value, "updateTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmGreaterThanOrEqualTo(Date value) {
+            addCriterion("update_tm >=", value, "updateTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmLessThan(Date value) {
+            addCriterion("update_tm <", value, "updateTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmLessThanOrEqualTo(Date value) {
+            addCriterion("update_tm <=", value, "updateTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmIn(List<Date> values) {
+            addCriterion("update_tm in", values, "updateTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmNotIn(List<Date> values) {
+            addCriterion("update_tm not in", values, "updateTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmBetween(Date value1, Date value2) {
+            addCriterion("update_tm between", value1, value2, "updateTm");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateTmNotBetween(Date value1, Date value2) {
+            addCriterion("update_tm not between", value1, value2, "updateTm");
             return (Criteria) this;
         }
     }

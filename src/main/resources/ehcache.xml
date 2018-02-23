@@ -5,6 +5,18 @@
            maxEntriesLocalHeap="200"
            timeToLiveSeconds="600">
     </cache>
+    <cache name="menus"
+           maxEntriesLocalHeap="200"
+           timeToLiveSeconds="600">
+    </cache>
+    <cache name="permissions"
+           maxEntriesLocalHeap="200"
+           timeToLiveSeconds="600">
+    </cache>
+    <cache name="role_users"
+           maxEntriesLocalHeap="200"
+           timeToLiveSeconds="600">
+    </cache>
     <cache name="roles"
            maxEntriesLocalHeap="200"
            timeToLiveSeconds="600">

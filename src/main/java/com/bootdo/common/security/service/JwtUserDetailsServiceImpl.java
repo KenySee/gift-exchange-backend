@@ -3,7 +3,9 @@ package com.bootdo.common.security.service;
 import com.bootdo.common.exception.ResponseException;
 import com.bootdo.common.security.JwtUserFactory;
 import com.bootdo.common.utils.StringUtils;
+import com.bootdo.domain.entity.SysRole;
 import com.bootdo.domain.entity.SysUser;
+import com.bootdo.service.SysRoleService;
 import com.bootdo.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,11 +24,15 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private SysUserService sysUserService;
 
+    @Autowired
+    private SysRoleService sysRoleService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (StringUtils.isNotBlank(username)) {
             //根据username查询用户信息
             SysUser sysUser = sysUserService.getUserByUserName(username);
+            sysUser.setRoleList(sysRoleService.getRole(sysUser.getId()));
             if(sysUser !=null) {
                 return JwtUserFactory.create(sysUser);
             }else{
