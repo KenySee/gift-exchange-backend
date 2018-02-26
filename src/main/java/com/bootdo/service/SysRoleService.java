@@ -31,8 +31,8 @@ public class SysRoleService  extends CrudService<SysRoleMapper,SysRole,SysRoleEx
     @Autowired
     SysUserRoleMapper sysuserRoleMapper;
 
-    @Cacheable(key = "#p0")
-    public List<SysRole> getRole(Long userId) {
+    @Cacheable(key = "'userId='+#p0")
+    public List<SysRole> getRolesByUserId(Long userId) {
         return dao.selectRolesByUserID(userId);
     }
 

@@ -31,9 +31,9 @@ public class SysPermissionService extends CrudService<SysUserMapper,SysUser,SysU
     public SysUser fetchUserPermission(String username) {
         SysUser sysUser = userService.getUserByUserName(username);
         if (sysUser != null) {
-            List<SysRole> roles = sysRoleService.getRole(sysUser.getId());
+            List<SysRole> roles = sysRoleService.getRolesByUserId(sysUser.getId());
             sysUser.setRoleList(roles);
-            List<SysMenu> menus = sysMenuService.getRoleMenus(sysUser.getId());
+            List<SysMenu> menus = sysMenuService.getMenusByUserId(sysUser.getId());
             sysUser.setMenuList(menus);
         }
         return sysUser;

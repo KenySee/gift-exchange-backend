@@ -6,6 +6,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="icon" jdbcType="VARCHAR" property="icon" />
     <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="serial_num" jdbcType="INTEGER" property="serialNum" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="create_tm" jdbcType="TIMESTAMP" property="createTm" />
     <result column="update_tm" jdbcType="TIMESTAMP" property="updateTm" />
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, name, icon, path, parent_id, create_tm, update_tm
+    id, name, icon, path, serial_num, parent_id, create_tm, update_tm
   </sql>
   <select id="selectByExample" parameterType="com.bootdo.domain.entity.example.SysMenuExample" resultMap="BaseResultMap">
     select
@@ -103,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.bootdo.domain.entity.SysMenu">
     insert into sys_menu (id, name, icon, 
-      path, parent_id, create_tm, 
-      update_tm)
+      path, serial_num, parent_id, 
+      create_tm, update_tm)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, 
-      #{path,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, #{createTm,jdbcType=TIMESTAMP}, 
-      #{updateTm,jdbcType=TIMESTAMP})
+      #{path,jdbcType=VARCHAR}, #{serialNum,jdbcType=INTEGER}, #{parentId,jdbcType=BIGINT}, 
+      #{createTm,jdbcType=TIMESTAMP}, #{updateTm,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.bootdo.domain.entity.SysMenu">
     insert into sys_menu
@@ -123,6 +124,9 @@
       </if>
       <if test="path != null">
         path,
+      </if>
+      <if test="serialNum != null">
+        serial_num,
       </if>
       <if test="parentId != null">
         parent_id,
@@ -146,6 +150,9 @@
       </if>
       <if test="path != null">
         #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=INTEGER},
       </if>
       <if test="parentId != null">
         #{parentId,jdbcType=BIGINT},
@@ -179,6 +186,9 @@
       <if test="record.path != null">
         path = #{record.path,jdbcType=VARCHAR},
       </if>
+      <if test="record.serialNum != null">
+        serial_num = #{record.serialNum,jdbcType=INTEGER},
+      </if>
       <if test="record.parentId != null">
         parent_id = #{record.parentId,jdbcType=BIGINT},
       </if>
@@ -199,6 +209,7 @@
       name = #{record.name,jdbcType=VARCHAR},
       icon = #{record.icon,jdbcType=VARCHAR},
       path = #{record.path,jdbcType=VARCHAR},
+      serial_num = #{record.serialNum,jdbcType=INTEGER},
       parent_id = #{record.parentId,jdbcType=BIGINT},
       create_tm = #{record.createTm,jdbcType=TIMESTAMP},
       update_tm = #{record.updateTm,jdbcType=TIMESTAMP}
@@ -218,6 +229,9 @@
       <if test="path != null">
         path = #{path,jdbcType=VARCHAR},
       </if>
+      <if test="serialNum != null">
+        serial_num = #{serialNum,jdbcType=INTEGER},
+      </if>
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=BIGINT},
       </if>
@@ -235,6 +249,7 @@
     set name = #{name,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=VARCHAR},
       path = #{path,jdbcType=VARCHAR},
+      serial_num = #{serialNum,jdbcType=INTEGER},
       parent_id = #{parentId,jdbcType=BIGINT},
       create_tm = #{createTm,jdbcType=TIMESTAMP},
       update_tm = #{updateTm,jdbcType=TIMESTAMP}

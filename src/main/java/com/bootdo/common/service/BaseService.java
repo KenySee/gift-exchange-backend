@@ -1,5 +1,6 @@
 package com.bootdo.common.service;
 
+import com.bootdo.common.page.AjaxPageInfo;
 import com.github.pagehelper.PageInfo;
 import com.bootdo.common.page.AjaxResponse;
 
@@ -21,9 +22,9 @@ public class BaseService<T> {
         return ajaxResponse;
     }
 
-    public AjaxResponse<PageInfo<T>> getAjaxResponsePage(List<T> list){
-        AjaxResponse<PageInfo<T>> ajaxResponse = new AjaxResponse();
-        PageInfo<T> pageInfo = new PageInfo(list);
+    public AjaxResponse<AjaxPageInfo<T>> getAjaxResponsePage(List<T> list){
+        AjaxResponse<AjaxPageInfo<T>> ajaxResponse = new AjaxResponse();
+        AjaxPageInfo<T> pageInfo = new AjaxPageInfo(list);
         ajaxResponse.setResult(pageInfo);
         return ajaxResponse;
     }

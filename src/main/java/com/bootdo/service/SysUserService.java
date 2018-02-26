@@ -43,14 +43,14 @@ public class SysUserService  extends CrudService<SysUserMapper,SysUser,SysUserEx
     }
     @Cacheable(key = "#p0")
     public SysUser getUserByUserID(Long id) {
-        SysUser hyUser = dao.selectByPrimaryKey(id);
-        hyUser.setRoleList(sysRoleService.getRole(hyUser.getId()));
-        return hyUser;
+        SysUser sysUser = dao.selectByPrimaryKey(id);
+        sysUser.setRoleList(sysRoleService.getRolesByUserId(sysUser.getId()));
+        return sysUser;
     }
 
     @CachePut(key="#p0.id")
-    public SysUser saveHyUser(SysUser hyUser){
-        this.save(hyUser);
-        return hyUser;
+    public SysUser saveHyUser(SysUser sysUser){
+        this.save(sysUser);
+        return sysUser;
     }
 }

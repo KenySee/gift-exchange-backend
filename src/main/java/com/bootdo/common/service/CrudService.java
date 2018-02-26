@@ -3,6 +3,7 @@
  */
 package com.bootdo.common.service;
 
+import com.bootdo.common.page.AjaxPageInfo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.bootdo.common.page.AjaxResponse;
@@ -62,7 +63,7 @@ public abstract class CrudService<D extends CrudMapper<Example,Entity>, Entity e
 	 * @param example
 	 * @return
 	 */
-	public AjaxResponse<PageInfo<Entity>> findPage(Integer page, Integer limit, Example example) {
+	public AjaxResponse<AjaxPageInfo<Entity>> findPage(Integer page, Integer limit, Example example) {
 		PageHelper.startPage(page, limit);
 		List<Entity> list = dao.selectByExample(example);
 		return getAjaxResponsePage(list);
@@ -107,7 +108,8 @@ public abstract class CrudService<D extends CrudMapper<Example,Entity>, Entity e
 	 */
 	@Transactional
 	public void updateByPrimaryKey(Entity entity) {
-		dao.updateByPrimaryKey(entity);
+		entity.preUpdate();
+		dao.updateByPrimaryKeySelective(entity);
 	}
 
 	/**

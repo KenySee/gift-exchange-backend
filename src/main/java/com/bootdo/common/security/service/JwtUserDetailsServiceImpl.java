@@ -32,7 +32,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
         if (StringUtils.isNotBlank(username)) {
             //根据username查询用户信息
             SysUser sysUser = sysUserService.getUserByUserName(username);
-            sysUser.setRoleList(sysRoleService.getRole(sysUser.getId()));
+            sysUser.setRoleList(sysRoleService.getRolesByUserId(sysUser.getId()));
             if(sysUser !=null) {
                 return JwtUserFactory.create(sysUser);
             }else{

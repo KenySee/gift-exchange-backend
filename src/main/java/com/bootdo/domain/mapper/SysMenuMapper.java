@@ -24,7 +24,7 @@ public interface SysMenuMapper  extends CrudMapper<SysMenuExample,SysMenu> {
     @Select("Select idGenMenu(${parentId})")
     public Long IdGen(@Param("parentId") Long parentId);
 
-    @Select("select * from sys_menu where id in(select menu_id from sys_role_menu where role_id in(select role_id from sys_user_role where user_id=#{userId}))")
+    @Select("select t1.* from sys_menu t1 inner join (select distinct menu_id from sys_role_menu t2 inner join sys_user_role t3 on t2.role_id = t3.role_id where t3.user_id=#{userId}) t2 on t1.id = t2.menu_id")
     @ResultMap("BaseResultMap")
     public List<SysMenu> selectMenusByUserID(@Param("userId") Long userId);
 }

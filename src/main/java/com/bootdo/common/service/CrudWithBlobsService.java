@@ -3,6 +3,7 @@
  */
 package com.bootdo.common.service;
 
+import com.bootdo.common.page.AjaxPageInfo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.bootdo.common.page.AjaxResponse;
@@ -47,7 +48,7 @@ public abstract class CrudWithBlobsService<D extends CrudWithBLOBsMapper<Example
 	 * @param example
 	 * @return
 	 */
-	public AjaxResponse<PageInfo<Entity>> findPageWithBLOBs(Integer page, Integer limit, Example example) {
+	public AjaxResponse<AjaxPageInfo<Entity>> findPageWithBLOBs(Integer page, Integer limit, Example example) {
 		PageHelper.startPage(page, limit);
 		List<Entity> list = dao.selectByExampleWithBLOBs(example);
 		return getAjaxResponsePage(list);

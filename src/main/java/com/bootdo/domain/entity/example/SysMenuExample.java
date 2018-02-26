@@ -375,6 +375,66 @@ public class SysMenuExample {
             return (Criteria) this;
         }
 
+        public Criteria andSerialNumIsNull() {
+            addCriterion("serial_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumIsNotNull() {
+            addCriterion("serial_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumEqualTo(Integer value) {
+            addCriterion("serial_num =", value, "serialNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumNotEqualTo(Integer value) {
+            addCriterion("serial_num <>", value, "serialNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumGreaterThan(Integer value) {
+            addCriterion("serial_num >", value, "serialNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("serial_num >=", value, "serialNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumLessThan(Integer value) {
+            addCriterion("serial_num <", value, "serialNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumLessThanOrEqualTo(Integer value) {
+            addCriterion("serial_num <=", value, "serialNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumIn(List<Integer> values) {
+            addCriterion("serial_num in", values, "serialNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumNotIn(List<Integer> values) {
+            addCriterion("serial_num not in", values, "serialNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumBetween(Integer value1, Integer value2) {
+            addCriterion("serial_num between", value1, value2, "serialNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andSerialNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("serial_num not between", value1, value2, "serialNum");
+            return (Criteria) this;
+        }
+
         public Criteria andParentIdIsNull() {
             addCriterion("parent_id is null");
             return (Criteria) this;

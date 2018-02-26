@@ -2,7 +2,9 @@ package com.bootdo.service;
 
 import java.util.List;
 
+import com.bootdo.common.page.AjaxResponse;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import com.bootdo.domain.entity.SysMenu;
@@ -25,8 +27,24 @@ import com.bootdo.common.service.CrudService;
 @CacheConfig(cacheNames = "menus")
 public class SysMenuService  extends CrudService<SysMenuMapper,SysMenu,SysMenuExample> {
 
-    @Cacheable(key = "#p0")
-    public List<SysMenu> getRoleMenus(Long userId) {
+    @Cacheable(key = "'userId='+#p0")
+    public List<SysMenu> getMenusByUserId(Long userId) {
         return dao.selectMenusByUserID(userId);
+    }
+
+    @Cacheable(key = "'all'")
+    public AjaxResponse<List<SysMenu>> findAll() {
+        SysMenuExample example = new SysMenuExample();
+        return this.findList(example);
+    }
+
+    @CacheEvict(key = "'all'")
+    public void save(SysMenu menu){
+        super.save(menu);
+    }
+
+    @CacheEvict(key = "'all'")
+    public void update(SysMenu menu){
+        this.updateByPrimaryKey(menu);
     }
 }

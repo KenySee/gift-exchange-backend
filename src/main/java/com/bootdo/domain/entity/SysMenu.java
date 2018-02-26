@@ -13,12 +13,15 @@ public class SysMenu extends BaseEntity {
 
     private String path;
 
+    private Integer serialNum = 0;
+
     private Long parentId;
 
     @Override
     public void preInsert() {
         SysMenuMapper mapper = SpringUtils.getBean(SysMenuMapper.class);
         Long id = mapper.IdGen(this.parentId);
+        this.setId(id);
         this.setCreateTm(new Date());
     }
 
@@ -44,6 +47,14 @@ public class SysMenu extends BaseEntity {
 
     public void setPath(String path) {
         this.path = path == null ? null : path.trim();
+    }
+
+    public Integer getSerialNum() {
+        return serialNum;
+    }
+
+    public void setSerialNum(Integer serialNum) {
+        this.serialNum = serialNum==null ? 0 : serialNum;
     }
 
     public Long getParentId() {

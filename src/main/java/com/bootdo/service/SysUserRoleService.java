@@ -4,6 +4,8 @@ import com.bootdo.common.service.CrudService;
 import com.bootdo.domain.entity.SysUserRole;
 import com.bootdo.domain.entity.example.SysUserRoleExample;
 import com.bootdo.domain.mapper.SysUserRoleMapper;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,4 +22,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysUserRoleService  extends CrudService<SysUserRoleMapper,SysUserRole,SysUserRoleExample> {
 
+    @Override
+    @CacheEvict(value = {"menus","roles"},key = "'userId='+#p0.userId")
+    public void save(SysUserRole userRole){
+        super.save(userRole);
+    }
+
+    @CacheEvict(value = {"menus","roles"},key = "'userId='+#p0.userId")
+    public void delete(SysUserRole userRole){
+        this.delete(userRole.getId());
+    }
 }

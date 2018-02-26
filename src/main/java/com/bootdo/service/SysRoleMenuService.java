@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.bootdo.domain.entity.SysMenu;
 import com.bootdo.domain.entity.SysRole;
+import com.bootdo.domain.entity.SysUserRole;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import com.bootdo.domain.entity.SysRoleMenu;
@@ -27,5 +29,14 @@ import com.bootdo.common.service.CrudService;
 @CacheConfig(cacheNames = "role_users")
 public class SysRoleMenuService  extends CrudService<SysRoleMenuMapper,SysRoleMenu,SysRoleMenuExample> {
 
+    @Override
+    @CacheEvict(value = {"menus"},allEntries=true)
+    public void save(SysRoleMenu roleMenu){
+        super.save(roleMenu);
+    }
 
+    @CacheEvict(value = {"menus"},allEntries=true)
+    public void delete(SysRoleMenu roleMenu){
+        this.delete(roleMenu.getId());
+    }
 }

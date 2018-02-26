@@ -30,6 +30,9 @@ public abstract class BaseEntity implements Serializable {
 	 */
 	protected boolean isNewRecord = false;
 
+	public Long getKey() {
+		return id;
+	}
 
 	public BaseEntity() {
 		
