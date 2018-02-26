@@ -38,12 +38,12 @@ public class SysMenuService  extends CrudService<SysMenuMapper,SysMenu,SysMenuEx
         return this.findList(example);
     }
 
-    @CacheEvict(key = "'all'")
+    @CacheEvict(allEntries=true)
     public void save(SysMenu menu){
         super.save(menu);
     }
 
-    @CacheEvict(key = "'all'")
+    @CacheEvict(allEntries=true)
     public void update(SysMenu menu){
         this.updateByPrimaryKey(menu);
     }

@@ -8,6 +8,7 @@ import com.bootdo.domain.mapper.SysRoleMapper;
 import com.bootdo.domain.mapper.SysUserRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,8 +37,7 @@ public class SysRoleService  extends CrudService<SysRoleMapper,SysRole,SysRoleEx
         return dao.selectRolesByUserID(userId);
     }
 
-    @Cacheable(key = "#p0")
-    @Transactional
+    @CacheEvict(value = {"roles","menus"},allEntries = true)
     public List<SysRole> insertUserRole(Long userId, Long... roleId) {
         for (Long id : roleId) {
             SysUserRole userRole = new SysUserRole();

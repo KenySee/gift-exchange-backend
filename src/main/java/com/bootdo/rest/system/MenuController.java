@@ -60,16 +60,16 @@ public class MenuController {
                                        @RequestParam(required = true) String icon,
                                        @RequestParam(required = true) String path,
                                        @RequestParam(required = true) Integer serialNum,
-                                       @RequestParam(required = true) Long parentId){
-        AjaxResponse<SysMenu> response = sysMenuService.get(id);
-        SysMenu menu = response.getResult();
+                                       @RequestParam(required = false) Long parentId){
+        SysMenu menu = new SysMenu();
+        menu.setId(id);
         menu.setName(name);
         menu.setIcon(icon);
         menu.setPath(path);
         menu.setSerialNum(serialNum);
         menu.setParentId(parentId);
         sysMenuService.update(menu);
-        return response;
+        return sysMenuService.get(id);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
