@@ -655,6 +655,66 @@ public class SysUserExample {
             return (Criteria) this;
         }
 
+        public Criteria andDepotIdIsNull() {
+            addCriterion("depot_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdIsNotNull() {
+            addCriterion("depot_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdEqualTo(Long value) {
+            addCriterion("depot_id =", value, "depotId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdNotEqualTo(Long value) {
+            addCriterion("depot_id <>", value, "depotId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdGreaterThan(Long value) {
+            addCriterion("depot_id >", value, "depotId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("depot_id >=", value, "depotId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdLessThan(Long value) {
+            addCriterion("depot_id <", value, "depotId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdLessThanOrEqualTo(Long value) {
+            addCriterion("depot_id <=", value, "depotId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdIn(List<Long> values) {
+            addCriterion("depot_id in", values, "depotId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdNotIn(List<Long> values) {
+            addCriterion("depot_id not in", values, "depotId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdBetween(Long value1, Long value2) {
+            addCriterion("depot_id between", value1, value2, "depotId");
+            return (Criteria) this;
+        }
+
+        public Criteria andDepotIdNotBetween(Long value1, Long value2) {
+            addCriterion("depot_id not between", value1, value2, "depotId");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTmIsNull() {
             addCriterion("create_tm is null");
             return (Criteria) this;

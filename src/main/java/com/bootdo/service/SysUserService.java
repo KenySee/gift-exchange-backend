@@ -1,6 +1,7 @@
 package com.bootdo.service;
 
 import com.bootdo.common.service.CrudService;
+import com.bootdo.domain.entity.SysDepot;
 import com.bootdo.domain.entity.SysMenu;
 import com.bootdo.domain.entity.SysRole;
 import com.bootdo.domain.entity.SysUser;
@@ -48,9 +49,11 @@ public class SysUserService  extends CrudService<SysUserMapper,SysUser,SysUserEx
         return sysUser;
     }
 
-    @CachePut(key="#p0.id")
-    public SysUser saveHyUser(SysUser sysUser){
-        this.save(sysUser);
-        return sysUser;
+    public void save(SysUser user){
+        super.save(user);
+    }
+
+    public void update(SysUser user){
+        this.updateByPrimaryKey(user);
     }
 }

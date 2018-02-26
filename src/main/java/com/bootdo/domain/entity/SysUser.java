@@ -21,6 +21,8 @@ public class SysUser extends BaseEntity {
 
     private String email;
 
+    private Long depotId;
+
     private Date lastPasswordResetDate;
 
     private String headimage;
@@ -83,6 +85,14 @@ public class SysUser extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public Long getDepotId() {
+        return depotId;
+    }
+
+    public void setDepotId(Long depotId) {
+        this.depotId = depotId;
     }
 
     public Date getLastPasswordResetDate() {

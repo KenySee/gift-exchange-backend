@@ -10,6 +10,7 @@
     <result column="userstatus" jdbcType="VARCHAR" property="userstatus" />
     <result column="credentialssalt" jdbcType="VARCHAR" property="credentialssalt" />
     <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="depot_id" jdbcType="BIGINT" property="depotId" />
     <result column="create_tm" jdbcType="TIMESTAMP" property="createTm" />
     <result column="update_tm" jdbcType="TIMESTAMP" property="updateTm" />
     <result column="last_password_reset_date" jdbcType="TIMESTAMP" property="lastPasswordResetDate" />
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, username, userpassword, realname, mobile, userstatus, credentialssalt, email, 
-    create_tm, update_tm, last_password_reset_date, headimage
+    depot_id, create_tm, update_tm, last_password_reset_date, headimage
   </sql>
   <select id="selectByExample" parameterType="com.bootdo.domain.entity.example.SysUserExample" resultMap="BaseResultMap">
     select
@@ -110,14 +111,14 @@
   <insert id="insert" parameterType="com.bootdo.domain.entity.SysUser">
     insert into sys_user (id, username, userpassword, 
       realname, mobile, userstatus, 
-      credentialssalt, email, create_tm, 
-      update_tm, last_password_reset_date, headimage
-      )
+      credentialssalt, email, depot_id, 
+      create_tm, update_tm, last_password_reset_date, 
+      headimage)
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{userpassword,jdbcType=VARCHAR}, 
       #{realname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{userstatus,jdbcType=VARCHAR}, 
-      #{credentialssalt,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{createTm,jdbcType=TIMESTAMP}, 
-      #{updateTm,jdbcType=TIMESTAMP}, #{lastPasswordResetDate,jdbcType=TIMESTAMP}, #{headimage,jdbcType=VARCHAR}
-      )
+      #{credentialssalt,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{depotId,jdbcType=BIGINT}, 
+      #{createTm,jdbcType=TIMESTAMP}, #{updateTm,jdbcType=TIMESTAMP}, #{lastPasswordResetDate,jdbcType=TIMESTAMP}, 
+      #{headimage,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bootdo.domain.entity.SysUser">
     insert into sys_user
@@ -145,6 +146,9 @@
       </if>
       <if test="email != null">
         email,
+      </if>
+      <if test="depotId != null">
+        depot_id,
       </if>
       <if test="createTm != null">
         create_tm,
@@ -183,6 +187,9 @@
       </if>
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="depotId != null">
+        #{depotId,jdbcType=BIGINT},
       </if>
       <if test="createTm != null">
         #{createTm,jdbcType=TIMESTAMP},
@@ -231,6 +238,9 @@
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
       </if>
+      <if test="record.depotId != null">
+        depot_id = #{record.depotId,jdbcType=BIGINT},
+      </if>
       <if test="record.createTm != null">
         create_tm = #{record.createTm,jdbcType=TIMESTAMP},
       </if>
@@ -258,6 +268,7 @@
       userstatus = #{record.userstatus,jdbcType=VARCHAR},
       credentialssalt = #{record.credentialssalt,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
+      depot_id = #{record.depotId,jdbcType=BIGINT},
       create_tm = #{record.createTm,jdbcType=TIMESTAMP},
       update_tm = #{record.updateTm,jdbcType=TIMESTAMP},
       last_password_reset_date = #{record.lastPasswordResetDate,jdbcType=TIMESTAMP},
@@ -290,6 +301,9 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="depotId != null">
+        depot_id = #{depotId,jdbcType=BIGINT},
+      </if>
       <if test="createTm != null">
         create_tm = #{createTm,jdbcType=TIMESTAMP},
       </if>
@@ -314,6 +328,7 @@
       userstatus = #{userstatus,jdbcType=VARCHAR},
       credentialssalt = #{credentialssalt,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
+      depot_id = #{depotId,jdbcType=BIGINT},
       create_tm = #{createTm,jdbcType=TIMESTAMP},
       update_tm = #{updateTm,jdbcType=TIMESTAMP},
       last_password_reset_date = #{lastPasswordResetDate,jdbcType=TIMESTAMP},

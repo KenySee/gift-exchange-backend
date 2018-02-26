@@ -87,7 +87,7 @@ public class LoginService {
             String headUrl = String.format("%s/%s", qiniu.getHost(), fileName);
             sysUser.setHeadimage(headUrl);
         }
-        sysUserService.saveHyUser(sysUser);
+        sysUserService.save(sysUser);
         //保存用户角色
         sysRoleService.insertUserRole(sysUser.getId(), ROLE_CLIENT_USER);
         return sysUser;
